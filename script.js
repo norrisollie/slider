@@ -13,18 +13,33 @@ function createElements(numberOfElements) {
     return elementsArray
 }
 
-function createSlides(numberOfSlides) {
+function createSlides(theData) {
 
     var slideCounter = 1;
     var slideNumberCounter = 1;
 
+    var slides = theData.slides;
+    var numberOfSlides = slides.length;
+
+    console.log(numberOfSlides)
+
     var slideElements = createElements(numberOfSlides);
 
-    for (var i = 0; i < slideElements.length; i++) {
+    for(var i = 0; i < numberOfSlides; i++) {
+
+        var title = slides[i].slide_title;
+        var message = slides[i].slide_message;
+        var color = slides[i].slide_background;
+
+        console.log(title);
+        console.log(message);
 
         slideElements[i].classList.add("slides")
+        slideElements[i].style.backgroundColor = color;
         slideElements[i].classList.add("slide-" + slideCounter++);
         slideElements[i].setAttribute("data-slidenumber", "slide-" + slideNumberCounter++);
+
+        slideElements[i].innerHTML += title + " " + message;
 
     }
 
@@ -122,38 +137,42 @@ function slideButtonClick(e) {
     }
 }
 
-var request = new XMLHttpRequest();
-request.open('GET', '/c2c/test2.json', true);
+function createXMLRequest() {
 
-request.onload = function() {
-  if (request.status >= 200 && request.status < 400) {
-    // Success!
-    var data = JSON.parse(request.responseText);
+    var request = new XMLHttpRequest();
 
-    for(var i = 0; i < data.length; i++){
+    request.open("GET", "/slider/test.json", true);
 
-    	console.log(data[i])
+    request.onload = requestSuccess;
+
+    request.onerror = requestError;
+
+    request.send()
+
+    function requestSuccess() {
+        console.log("success")
+
+        var data = JSON.parse(this.responseText);
+
+        console.log(data)
+        app(data);
 
     }
 
-  } else {
-    // We reached our target server, but it returned an error
+    function requestError() {
+        console.log("error");
+    }
 
-  }
-};
+}
 
-request.onerror = function() {
-  // There was a connection error of some sort
-};
+function app(data) {
 
-request.send();
-
-function app() {
+    var theData = data;
 
     var slideContainer = document.querySelector(".slide-container");
     var buttonContainer = document.querySelector(".button-container");
 
-    var slides = createSlides(10);
+    var slides = createSlides(theData);
 
     appendElements(slides, slideContainer);
 
@@ -165,4 +184,4 @@ function app() {
 
 }
 
-window.onload = app();
+window.onload = createXMLRequest();

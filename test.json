@@ -1,0 +1,30 @@
+{
+    "slides": [
+    {
+        "slide_number": 1,
+        "slide_title": "Slide 1",
+        "slide_message": "This is a slide message",
+        "slide_background": "#000"
+    },
+    {
+        "slide_number": 2,
+        "slide_title": "Slide 2",
+        "slide_message": "This is the second slide message"
+    },
+    {
+        "slide_number": 3,
+        "slide_title": "Slide 3",
+        "slide_message": "This is the third slide message"
+    },
+    {
+        "slide_number": 4,
+        "slide_title": "Slide 4",
+        "slide_message": "This is the fourth slide message"
+    },
+    {
+        "slide_number": 5,
+        "slide_title": "Slide 5",
+        "slide_message": "This is the fifth slide message"
+    }
+]
+}
