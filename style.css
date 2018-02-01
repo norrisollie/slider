@@ -67,35 +67,6 @@ body {
 	flex-shrink: 0;
 }
 
-.slide-1 {
-	background-color: red;
-}
-
-
-.slide-2 {
-	background-color: yellow;
-}
-
-
-.slide-3 {
-	background-color: pink;
-}
-
-
-.slide-4 {
-	background-color: green;
-}
-
-
-.slide-5 {
-	background-color: purple;
-}
-
-
-.slide-6 {
-	background-color: orange;
-}
-
 .active {
 	background-color: #ff4203;
 	color: #FFF;

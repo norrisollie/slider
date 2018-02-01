@@ -13,34 +13,43 @@ function createElements(numberOfElements) {
     return elementsArray
 }
 
-function createSlides(theData) {
+function createSlides(data) {
 
     var slideCounter = 1;
     var slideNumberCounter = 1;
 
-    var slides = theData.slides;
-    var numberOfSlides = slides.length;
+    var slides = data.slides;
+    var filtered = slides.filter(function(slide) {
+        var isObject = typeof slide === "object"
+        return isObject
+    })
+    var numberOfSlides = filtered.length;
 
     console.log(numberOfSlides)
 
     var slideElements = createElements(numberOfSlides);
 
-    for(var i = 0; i < numberOfSlides; i++) {
+    for (var i = 0; i < numberOfSlides; i++) {
 
-        var title = slides[i].slide_title;
-        var message = slides[i].slide_message;
-        var color = slides[i].slide_background;
+        console.log(typeof filtered[i])
 
-        console.log(title);
-        console.log(message);
+        if (typeof filtered[i] === "object") {
 
-        slideElements[i].classList.add("slides")
-        slideElements[i].style.backgroundColor = color;
-        slideElements[i].classList.add("slide-" + slideCounter++);
-        slideElements[i].setAttribute("data-slidenumber", "slide-" + slideNumberCounter++);
+            var title = filtered[i].slide_title;
+            var message = filtered[i].slide_message;
+            var color = filtered[i].slide_background;
 
-        slideElements[i].innerHTML += title + " " + message;
+            console.log(title);
+            console.log(message);
 
+            slideElements[i].classList.add("slides")
+            slideElements[i].style.backgroundColor = color;
+            slideElements[i].classList.add("slide-" + slideCounter++);
+            slideElements[i].setAttribute("data-slidenumber", "slide-" + slideNumberCounter++);
+
+            slideElements[i].innerHTML += title + " " + message;
+
+        }
     }
 
     console.log(slideElements)
@@ -141,7 +150,7 @@ function createXMLRequest() {
 
     var request = new XMLHttpRequest();
 
-    request.open("GET", "/slider/test.json", true);
+    request.open("GET", "test.json", true);
 
     request.onload = requestSuccess;
 
@@ -167,12 +176,11 @@ function createXMLRequest() {
 
 function app(data) {
 
-    var theData = data;
 
     var slideContainer = document.querySelector(".slide-container");
     var buttonContainer = document.querySelector(".button-container");
 
-    var slides = createSlides(theData);
+    var slides = createSlides(data);
 
     appendElements(slides, slideContainer);
 
