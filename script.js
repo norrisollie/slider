@@ -150,8 +150,9 @@ var numberOfSlides;
 
 function arrowButtonHandler(e) {
 
-
     var direction = e.target.dataset.arrowdirection;
+
+        moveSlides(slideNumberPosition)
 
     switch(direction) {
 
@@ -167,7 +168,11 @@ function arrowButtonHandler(e) {
 
         break;
 
+
+
     }
+
+
 
     if(currentSlide <1) {
         currentSlide = 1;
@@ -177,6 +182,9 @@ function arrowButtonHandler(e) {
         currentSlide = numberOfSlides;
     }
 
+    var slideNumberPosition = document.querySelector(".slide-" + currentSlide).offsetLeft;
+
+            moveSlides(slideNumberPosition)
 
     console.log(currentSlide)
 
@@ -210,28 +218,35 @@ function slideButtonHandler(e) {
 
     }
 
-    var slideContainer = document.querySelector(".slide-container");
-
     for (var i = 0; i < slideNumberArray.length; i++) {
 
-        var elementPosition = document.querySelector("." + targetButtonDataset).offsetLeft;
+        var slideNumberPosition = document.querySelector("." + targetButtonDataset).offsetLeft;
 
-        if (targetButtonDataset === slideNumberArray[i]) {
+        moveSlides(slideNumberPosition)
 
-            var scroll_source_object = {
+    }
+
+
+}
+
+function moveSlides(slideNumberPosition) {
+
+    var slideContainer = document.querySelector(".slide-container");
+
+    var scroll_source_object = {
                 x: slideContainer.scrollLeft
             };
 
             TweenMax.to(scroll_source_object, 2, {
-                x: elementPosition,
+                x: slideNumberPosition,
                 onUpdate: function() {
                     slideContainer.scrollTo(scroll_source_object.x, 0);
                 },
                 ease: Power3.easeOut
             });
-        }
-    }
+
 }
+
 
 function createXMLRequest() {
 

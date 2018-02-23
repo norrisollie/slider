@@ -81,14 +81,13 @@ body {
 	top: 0;
 	width: 50px;
 	z-index: 100;
+	background-color: grey;
 }
 .arrow-left {
-	background-color: orange;
 	left: 0;
 }
 
 .arrow-right {
-	background-color: orange;
 	right: 0;
 }
 
