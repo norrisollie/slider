@@ -13,6 +13,8 @@ function createElements(numberOfElements) {
     return elementsArray
 }
 
+var numberOfSlides;
+
 function createSlides(data) {
 
     var slideCounter = 1;
@@ -74,14 +76,38 @@ function createSlideButtons(slideArrayLength) {
         buttonElements[i].classList.add("button-" + slideButtonClassCounter++);
         buttonElements[i].textContent = slideButtonTextCounter++;
         buttonElements[i].setAttribute("data-slidenumber", "slide-" + slideButtonDatasetCounter++);
+        buttonElements[i].setAttribute("data-buttontype", "slideButton");
 
-        buttonElements[i].addEventListener("click", slideButtonClick);
+        buttonElements[i].addEventListener("click", clickEventHandler);
 
     }
 
     console.log(buttonElements)
 
     return buttonElements
+
+}
+
+function createArrows(numberOfArrows) {
+
+    var leftArrow = document.createElement("div");
+        leftArrow.classList.add("arrow", "arrow-left");
+        leftArrow.setAttribute("data-buttontype", "arrow");
+        leftArrow.setAttribute("data-arrowdirection", "left");
+
+    var rightArrow = document.createElement("div");
+        rightArrow.classList.add("arrow", "arrow-right");
+        rightArrow.setAttribute("data-buttontype", "arrow");
+        rightArrow.setAttribute("data-arrowdirection", "right");
+
+        var arrows = [leftArrow, rightArrow];
+
+        for(var i = 0; i < arrows.length; i++) {
+            arrows[i].addEventListener("click", clickEventHandler); 
+        }
+
+    return arrows
+
 
 }
 
@@ -95,7 +121,68 @@ function appendElements(elementsArray, container) {
 
 }
 
-function slideButtonClick(e) {
+function clickEventHandler(e) {
+
+    var slideButtons = document.querySelectorAll("buttons");
+    var arrows = document.querySelectorAll("arrows");
+
+    var clickTarget = e.target.dataset.buttontype
+
+    switch(clickTarget) {
+
+        case "slideButton":
+
+            slideButtonHandler(e);
+
+        break;
+
+        case "arrow":
+
+arrowButtonHandler(e);
+
+        break;
+
+    }
+}
+
+var currentSlide = 1;
+var numberOfSlides;
+
+function arrowButtonHandler(e) {
+
+
+    var direction = e.target.dataset.arrowdirection;
+
+    switch(direction) {
+
+        case "left":
+
+            currentSlide--
+
+        break;
+
+        case "right":
+
+        currentSlide++
+
+        break;
+
+    }
+
+    if(currentSlide <1) {
+        currentSlide = 1;
+    }
+
+    if(currentSlide > numberOfSlides) {
+        currentSlide = numberOfSlides;
+    }
+
+
+    console.log(currentSlide)
+
+}
+
+function slideButtonHandler(e) {
 
     var slideButtons = document.querySelectorAll(".buttons");
 
@@ -174,21 +261,31 @@ function createXMLRequest() {
 
 }
 
+
+
 function app(data) {
 
 
+    var wrapper = document.querySelector(".wrapper");
     var slideContainer = document.querySelector(".slide-container");
     var buttonContainer = document.querySelector(".button-container");
 
     var slides = createSlides(data);
+    numberOfSlides = slides.length
 
     appendElements(slides, slideContainer);
 
-    var numberOfSlides = slides.length;
+    // var numberOfSlides = slides.length;
 
     var buttons = createSlideButtons(numberOfSlides);
 
     appendElements(buttons, buttonContainer);
+
+    // var numberOfArrows = arrowsArr.length;
+
+    var arrows = createArrows();
+
+    appendElements(arrows, wrapper);
 
 }
 

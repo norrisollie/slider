@@ -71,3 +71,28 @@ body {
 	background-color: #ff4203;
 	color: #FFF;
 }
+
+.arrow {
+	display: flex;
+	position: absolute;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	top: 0;
+	width: 50px;
+	z-index: 100;
+}
+.arrow-left {
+	background-color: orange;
+	left: 0;
+}
+
+.arrow-right {
+	background-color: orange;
+	right: 0;
+}
+
+.arrow:hover {
+	background-color: magenta;
+}
+
