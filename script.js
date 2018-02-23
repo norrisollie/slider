@@ -75,7 +75,7 @@ function createSlideButtons(slideArrayLength) {
         buttonElements[i].classList.add("buttons")
         buttonElements[i].classList.add("button-" + slideButtonClassCounter++);
         buttonElements[i].textContent = slideButtonTextCounter++;
-        buttonElements[i].setAttribute("data-slidenumber", "slide-" + slideButtonDatasetCounter++);
+        buttonElements[i].setAttribute("data-slidenumber", slideButtonDatasetCounter++);
         buttonElements[i].setAttribute("data-buttontype", "slideButton");
 
         buttonElements[i].addEventListener("click", clickEventHandler);
@@ -182,6 +182,18 @@ function arrowButtonHandler(e) {
         currentSlide = numberOfSlides;
     }
 
+    var targetButton = document.querySelector(".button-" + currentSlide)
+
+    var slideButtons = document.querySelectorAll(".buttons");
+
+    for (var i = 0; i < slideButtons.length; i++) {
+
+        slideButtons[i].classList.remove("active");
+
+    }
+
+    targetButton.classList.add("active");
+
     var slideNumberPosition = document.querySelector(".slide-" + currentSlide).offsetLeft;
 
             moveSlides(slideNumberPosition)
@@ -197,6 +209,10 @@ function slideButtonHandler(e) {
     var targetButton = e.target;
 
     var targetButtonDataset = e.target.dataset.slidenumber;
+
+    currentSlide = targetButtonDataset;
+
+
 
     for (var i = 0; i < slideButtons.length; i++) {
 
@@ -220,7 +236,7 @@ function slideButtonHandler(e) {
 
     for (var i = 0; i < slideNumberArray.length; i++) {
 
-        var slideNumberPosition = document.querySelector("." + targetButtonDataset).offsetLeft;
+        var slideNumberPosition = document.querySelector(".slide-" + targetButtonDataset).offsetLeft;
 
         moveSlides(slideNumberPosition)
 

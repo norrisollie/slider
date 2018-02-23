@@ -12,28 +12,28 @@
     },
     {
         "slide_title": "Slide 3",
-        "slide_message": "This is the fourth slide message",
+        "slide_message": "This is the 3 slide message",
         "slide_background": "pink"
     },
     {
         "slide_title": "Slide 4",
-        "slide_message": "This is the fifth slide message",
+        "slide_message": "This is the 4 slide message",
         "slide_background": "green"
     },
     "string",
     {
         "slide_title": "Slide 5",
-        "slide_message": "This is the fifth slide message",
+        "slide_message": "This is the 5 slide message",
         "slide_background": "purple"
     },
     {
         "slide_title": "Slide 6",
-        "slide_message": "This is the fifth slide message",
+        "slide_message": "This is the 6 slide message",
         "slide_background": "orange"
     },
     {
         "slide_title": "Slide 7",
-        "slide_message": "This is the fifth slide message",
+        "slide_message": "This is the 7 slide message",
         "slide_background": "blue"
     }
 ]
