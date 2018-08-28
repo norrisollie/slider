@@ -15,11 +15,7 @@
         "slide_message": "This is the 3 slide message",
         "slide_background": "pink"
     },
-    {
-        "slide_title": "Slide 4",
-        "slide_message": "This is the 4 slide message",
-        "slide_background": "green"
-    },
+
     "string",
     {
         "slide_title": "Slide 5",
@@ -32,6 +28,19 @@
         "slide_background": "orange"
     },
     {
+        "slide_title": "Slide 7",
+        "slide_message": "This is the 7 slide message",
+        "slide_background": "blue"
+    },
+        {
+        "slide_title": "Slide 7",
+        "slide_message": "This is the 7 slide message",
+        "slide_background": "blue"
+    },    {
+        "slide_title": "Slide 7",
+        "slide_message": "This is the 7 slide message",
+        "slide_background": "blue"
+    },    {
         "slide_title": "Slide 7",
         "slide_message": "This is the 7 slide message",
         "slide_background": "blue"
